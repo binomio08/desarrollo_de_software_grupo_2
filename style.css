@@ -1,0 +1,128 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    padding-top: 4.5rem; /* Para evitar que el navbar cubra el contenido */
+}
+
+/* Navbar */
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.navbar-brand:hover, .navbar-nav .nav-link:hover {
+    color: #007bff;
+}
+
+.navbar-toggler-icon {
+    background-color: #ffffff;
+}
+
+/* Carrusel */
+.carousel-item img {
+    max-height: 400px;
+    object-fit: cover;
+}
+
+/* Sección de productos destacados */
+.card {
+    margin-bottom: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Footer */
+.footer {
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 1.5rem 0;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: #0056b3;
+}
+
+/* Carrito de compras */
+.table {
+    margin-bottom: 30px;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.table img {
+    width: 50px;
+    height: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .navbar-nav .nav-link {
+        padding: .5rem 0;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+}
