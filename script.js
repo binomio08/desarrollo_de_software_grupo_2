@@ -1,4 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Manejar el formulario de checkout
+    const checkoutForm = document.getElementById('checkout-form');
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const shippingMethod = document.getElementById('shipping-method').value;
+
+            if (shippingMethod === '') {
+                alert('Por favor, seleccione un método de envío.');
+                return;
+            }
+
+            const orderDetails = {
+                email: email,
+                address: address,
+                shippingMethod: shippingMethod
+            };
+
+            console.log('Detalles del pedido:', orderDetails);
+            alert('Pago confirmado. ¡Gracias por su compra!');
+        });
+    }
     // Ejemplo de datos del carrito
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -52,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         localStorage.setItem('cart', JSON.stringify(cartItems));
         alert("Producto agregado al carrito");
+        updateCart();
     }
 
     // Actualizar el carrito en la página del carrito
@@ -91,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Función para aumentar la cantidad de un artículo en el carrito
-    function increaseQuantity(name) {
+    window.increaseQuantity = function(name) {
         const index = cartItems.findIndex(item => item.name === name);
         if (index > -1) {
             cartItems[index].quantity++;
@@ -101,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Función para disminuir la cantidad de un artículo en el carrito
-    function decreaseQuantity(name) {
+    window.decreaseQuantity = function(name) {
         const index = cartItems.findIndex(item => item.name === name);
         if (index > -1 && cartItems[index].quantity > 1) {
             cartItems[index].quantity--;
@@ -113,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Función para eliminar un artículo del carrito
-    function removeFromCart(name) {
+    window.removeFromCart = function(name) {
         cartItems = cartItems.filter(item => item.name !== name);
         localStorage.setItem('cart', JSON.stringify(cartItems));
         updateCart();
