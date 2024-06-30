@@ -30,6 +30,7 @@ createApp({
         .then((data) => {
           // Asigna los datos de los productos obtenidos al arreglo 'productos'
           this.productos = data;
+          
           this.cargando = false;
         })
         .catch((err) => {

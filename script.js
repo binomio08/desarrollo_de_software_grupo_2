@@ -27,22 +27,38 @@ document.addEventListener("DOMContentLoaded", function () {
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
     // Productos disponibles en la tienda (ejemplo)
-    const products = [
-        {
-            name: "Espatula Carol",
-            price: 500,
-            description: "Resistente al calor.",
-            image: "asset/espatula carol.jpeg"
-        },
-        {
-            name: "Set de Cuchillos",
-            price: 10000,
-            description: "Ideales para cocinar.",
-            image: "asset/setCuchillos.webp"
-        }
-    ];
+    // const products = [
+    //     {
+    //         name: "Espatula Carol",
+    //         price: 500,
+    //         description: "Resistente al calor.",
+    //         image: "asset/espatula carol.jpeg"
+    //     },
+    //     {
+    //         name: "Set de Cuchillos",
+    //         price: 10000,
+    //         description: "Ideales para cocinar.",
+    //         image: "asset/setCuchillos.webp"
+    //     }
+    // ];
 
     // Inicializar eventos y funcionalidades
+
+    fetch('https://germancortez.pythonanywhere.com/productos')
+        .then(response => response.json())
+        .then(data => {
+            // Convertir los datos al formato esperado por el resto del código
+            const products = data.map(product => ({
+                name: product.nombre,
+                price: product.precio,
+                description: product.descripcion,
+                image: product.imagen
+            }));
+            initialize(products);
+        })
+        .catch(error => console.error('Error fetching products:', error));
+
+
     initialize();
 
     function initialize() {
