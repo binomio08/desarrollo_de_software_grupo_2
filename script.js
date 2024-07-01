@@ -17,9 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function initialize() {
         try {
-            await displayProducts();
+            const pathName = window.location.pathname;
+            if (pathName.endsWith('product-detail.html')) {
+                await displayProductDetail();
+            } else {
+                await displayProducts();
+            }
             handleCartPage();
-            handleProductDetailPage();
             handleLogin();
             handleRegistration();
             handleSearch();
@@ -31,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
     async function displayProducts() {
         const products = await fetchProducts();
         const productContainer = document.querySelector('.row');
-        
+
         if (!productContainer) {
             console.error('Elemento .row no encontrado en el DOM.');
             return;
@@ -47,10 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     <img src="${product.imagen}" class="card-img-top" alt="${product.nombre}">
                     <div class="card-body">
                         <h5 class="card-title">${product.nombre}</h5>
-                        <p class="card-text">${product.descripcion}</p>
                         <h3>$${product.precio}</h3>
                         <button class="btn btn-primary add-to-cart" data-product-name="${product.nombre}" data-product-price="${product.precio}">Agregar al Carrito</button>
-                        <a href="product-detail.html?product=${encodeURIComponent(product.nombre.toLowerCase().replace(/\s+/g, '-'))}" class="btn btn-secondary">Ver Detalles</a>
+                        <a href="product-detail.html?id=${product.id}" class="btn btn-secondary">Ver Detalles</a>
                     </div>
                 </div>
             `;
@@ -58,6 +61,57 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         handleAddToCart();
+    }
+
+    async function displayProductDetail() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+    
+        if (!productId) {
+            console.error('No se proporcionó el ID del producto en la URL.');
+            return;
+        }
+    
+        const productDetail = await fetchProductDetails(productId);
+    
+        if (productDetail) {
+            const productNameElement = document.getElementById('product-name');
+            const productPriceElement = document.getElementById('product-price');
+            const productDescriptionElement = document.getElementById('product-description');
+            const productImageElement = document.getElementById('product-image');
+            const productStockElement = document.getElementById('product-stock');
+    
+            if (productNameElement && productPriceElement && productDescriptionElement && productImageElement && productStockElement) {
+                productNameElement.innerText = productDetail.nombre;
+                productPriceElement.innerText = `$${productDetail.precio}`;
+                productDescriptionElement.innerText = productDetail.descripcion;
+                productImageElement.src = productDetail.imagen;
+                productStockElement.innerText = `Stock: ${productDetail.stock}`;
+    
+                document.getElementById('add-to-cart-detail').addEventListener('click', function () {
+                    addToCartHandler(productDetail.nombre, productDetail.precio);
+                });
+            } else {
+                console.error('Uno o más elementos de detalle del producto no se encontraron en el DOM.');
+            }
+        } else {
+            console.error('Producto no encontrado');
+        }
+    }
+    
+
+    async function fetchProductDetails(id) {
+        try {
+            const response = await fetch(`https://germancortez.pythonanywhere.com/productos/${id}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error al obtener los detalles del producto:', error);
+            return null;
+        }
     }
 
     function handleAddToCart() {
@@ -143,30 +197,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCart();
     }
 
-    function handleProductDetailPage() {
-        if (window.location.pathname.endsWith('product-detail.html')) {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productNameParam = urlParams.get('product');
-
-            fetchProducts().then(products => {
-                const productDetail = products.find(p => encodeURIComponent(p.nombre.toLowerCase().replace(/\s+/g, '-')) === productNameParam);
-
-                if (productDetail) {
-                    document.getElementById('product-name').innerText = productDetail.nombre;
-                    document.getElementById('product-price').innerText = `$${productDetail.precio}`;
-                    document.getElementById('product-description').innerText = productDetail.descripcion;
-                    document.getElementById('product-image').src = productDetail.imagen;
-
-                    document.getElementById('add-to-cart-detail').addEventListener('click', function () {
-                        addToCartHandler(productDetail.nombre, productDetail.precio);
-                    });
-                } else {
-                    console.error('Producto no encontrado');
-                }
-            });
-        }
-    }
-
     function handleLogin() {
         const loginForm = document.getElementById('login-form');
         if (loginForm) {
@@ -218,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function displayFilteredProducts(filteredProducts) {
         const productContainer = document.querySelector('.row');
-        
+
         if (!productContainer) {
             console.error('Elemento .row no encontrado en el DOM.');
             return;
@@ -237,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <p class="card-text">${product.descripcion}</p>
                         <h3>$${product.precio}</h3>
                         <button class="btn btn-primary add-to-cart" data-product-name="${product.nombre}" data-product-price="${product.precio}">Agregar al Carrito</button>
-                        <a href="product-detail.html?product=${encodeURIComponent(product.nombre.toLowerCase().replace(/\s+/g, '-'))}" class="btn btn-secondary">Ver Detalles</a>
+                        <a href="product-detail.html?id=${product.id}" class="btn btn-secondary">Ver Detalles</a>
                     </div>
                 </div>
             `;
@@ -245,8 +275,23 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         handleAddToCart();
+        handleViewDetails();
+    }
+
+    function handleViewDetails() {
+        const viewDetailsButtons = document.querySelectorAll('.view-details');
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                const productId = button.getAttribute('data-product-id');
+                if (productId) {
+                    window.location.href = `product-detail.html?id=${productId}`;
+                } else {
+                    console.error('No se encontró el ID del producto.');
+                }
+            });
+        });
     }
 
     initialize();
 });
-
