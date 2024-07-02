@@ -197,23 +197,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCart();
     }
 
-    function handleLogin() {
-        const loginForm = document.getElementById('login-form');
-        if (loginForm) {
-            loginForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                if (email === "user@example.com" && password === "password") {
-                    alert("Inicio de sesión exitoso");
-                    window.location.href = "index.html";
-                } else {
-                    alert("Correo o contraseña incorrectos");
-                }
-            });
-        }
-    }
-
     function handleRegistration() {
         const registerForm = document.getElementById('register-form');
         if (registerForm) {
