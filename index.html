@@ -7,39 +7,26 @@
     <title>E-commerce</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Puedes definir tus estilos personalizados en style.css -->
+    <script>
+        // Función para incrementar el contador
+        function incrementarContador() {
+            let contador = localStorage.getItem('contador') || 0;
+            contador++;
+            localStorage.setItem('contador', contador);
+            //document.getElementById('valor-contador').textContent = contador;
+        }
+
+        // Cargar el contador al cargar la página
+        window.onload = function () {
+            incrementarContador();
+        };
+    </script>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0 mx-auto" id="search-form">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" id="search-input">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                    </form>                    
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html"><i class="fas fa-user"></i> Iniciar Sesión</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header id="header">
+    <!-- Se reemplaza por navbar -->
     </header>
 
     <main>
@@ -73,38 +60,61 @@
         <section class="container my-5">
             <h2 class="mb-4">Artículos Destacados</h2>
             <div class="row">
-                <div class="col-sm-6 mb-3">
-                    <div class="card">
-                        <img src="asset/espatula carol.jpeg" class="card-img-top" alt="Espatula Carol">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="asset/product1.jpg" alt="" >
                         <div class="card-body">
-                            <h5 class="card-title">Espatula Carol</h5>
-                            <p class="card-text">Descripción del producto.</p>
-                            <h3>$500</h3>
-                            <button class="btn btn-primary add-to-cart" data-product-name="Espatula Carol" data-product-price="500">Agregar al Carrito</button>
-                            <a href="product-detail.html?product=espatula-carol" class="btn btn-secondary">Ver Detalles</a>
+                            <h4 class="card-title">Nombre Producto 1</h4>
+                            <h5>$24.99</h5>
+                            <p class="card-text">Descripción corta del producto.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="product-detail.html?id=1" class="btn btn-primary">Ver Detalles</a>
+                            <button class="btn btn-outline-secondary ml-2"><i class="fas fa-shopping-cart"></i>
+                                Agregar</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 mb-3">
-                    <div class="card">
-                        <img src="asset/setCuchillos.webp" class="card-img-top" alt="Set de Cuchillos">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="asset/product2.jpg" alt="">
                         <div class="card-body">
-                            <h5 class="card-title">Set de Cuchillos</h5>
-                            <p class="card-text">Descripción del producto.</p>
-                            <h3>$10,000</h3>
-                            <button class="btn btn-primary add-to-cart" data-product-name="Set de Cuchillos" data-product-price="10000">Agregar al Carrito</button>
-                            <a href="product-detail.html?product=set-de-cuchillos" class="btn btn-secondary">Ver Detalles</a>
+                            <h4 class="card-title">Nombre Producto 2</h4>
+                            <h5>$19.99</h5>
+                            <p class="card-text">Descripción corta del producto.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="product-detail.html?id=2" class="btn btn-primary">Ver Detalles</a>
+                            <button class="btn btn-outline-secondary ml-2"><i class="fas fa-shopping-cart"></i>
+                                Agregar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="asset/product3.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Nombre Producto 3</h4>
+                            <h5>$29.99</h5>
+                            <p class="card-text">Descripción corta del producto.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="product-detail.html?id=3" class="btn btn-primary">Ver Detalles</a>
+                            <button class="btn btn-outline-secondary ml-2"><i class="fas fa-shopping-cart"></i>
+                                Agregar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <footer class="footer bg-light text-center py-3">
         <div class="container">
-            <span class="text-muted">© 2024 E-commerce</span>
-            <a href="crud/productos.html">CRUD</a>
+            <span class="text-muted">
+                <a href="crud/productos.html">©</a>
+                 2024 E-commerce</span>
         </div>
     </footer>
 
@@ -112,6 +122,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
+    <script src="navbar.js"></script>
 </body>
 
 </html>

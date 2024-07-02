@@ -7,51 +7,29 @@
     <title>Detalles del Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Puedes definir tus estilos personalizados en style.css -->
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">Navbar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0 mx-auto">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html"><i class="fas fa-user"></i> Iniciar Sesión</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header id="header">
+        <!-- Se reemplaza por navbar -->
     </header>
 
     <main class="container my-5">
-        <h2 id="product-name" class="mb-4">Nombre del Producto</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <img id="product-image" src="https://via.placeholder.com/400x300" class="img-fluid" alt="Producto">
-            </div>
-            <div class="col-md-6">
-                <h3 id="product-price">$0.00</h3>
-                <p id="product-description">Descripción del producto.</p>
-                <button id="add-to-cart-detail" class="btn btn-primary">Agregar al Carrito</button>
+        <div class="card">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img id="product-image" src="" class="card-img" alt="Producto">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 id="product-name" class="card-title"></h2>
+                        <p id="product-description" class="card-text"></p>
+                        <p id="product-stock" class="card-text"></p>
+                        <h3 id="product-price" class="card-text"></h3>
+                        <button id="add-to-cart-detail" class="btn btn-primary">Agregar al Carrito</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -66,6 +44,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
+    <script src="navbar.js"></script>
 </body>
 
 </html>

@@ -26,13 +26,17 @@ body {
 /* Carrusel */
 .carousel-item img {
     max-height: 400px;
-    object-fit: cover;
+    object-fit: scale-down;
 }
 
 /* Sección de productos destacados */
 .card {
     margin-bottom: 30px;
     transition: transform 0.3s, box-shadow 0.3s;
+}
+.card-img-top {
+    max-height: 300px;
+    object-fit: scale-down;
 }
 
 .card:hover {

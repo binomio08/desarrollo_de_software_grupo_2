@@ -5,7 +5,7 @@ document.getElementById(
   "header"
 ).innerHTML = ` <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="../index.html">Navbar</a>
+                <a class="navbar-brand" href="../index.html">E-commerce</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -17,7 +17,7 @@ document.getElementById(
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 mx-auto" id="search-form">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar"
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
                             id="search-input">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
