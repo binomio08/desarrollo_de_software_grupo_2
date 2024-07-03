@@ -22,9 +22,9 @@ document.getElementById(
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
                     </form>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../login.html"><i class="fas fa-user"></i> Iniciar Sesión</a>
-                        </li>
+                       <!-- <li class="nav-item">
+                            <a class="nav-link" href="../login.html"><i class="fas fa-user"></i> Vienvenido </a>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="../cart.html"><i class="fas fa-shopping-cart"></i> Carrito</a>
                         </li>
